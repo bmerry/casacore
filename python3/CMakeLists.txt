@@ -42,7 +42,7 @@ if (PYTHONINTERP_FOUND)
     set(PYTHON3_NUMPY_INCLUDE_DIRS ${NUMPY_INCLUDE_DIRS} PARENT_SCOPE)
     set(PYTHON3_Boost_LIBRARIES ${Boost_LIBRARIES} PARENT_SCOPE)
     set(PYTHON3_Boost_INCLUDE_DIRS ${Boost_INCLUDE_DIRS} PARENT_SCOPE)
-    set(PYTHON3_Boost_PYTHON_LIBRARY_RELEASE ${Boost_PYTHON_LIBRARY_RELEASE} PARENT_SCOPE)
+    set(PYTHON3_Boost_PYTHON_LIBRARY_RELEASE ${PYTHON3_Boost_LIBRARIES} PARENT_SCOPE)
     set(PYTHON3_INCLUDE_DIRS ${PYTHON_INCLUDE_DIRS} PARENT_SCOPE)
 
     # to access the variables here we also need to set them in the local scope
@@ -74,7 +74,8 @@ add_library (casa_python3
 ../python/Converters/PycValueHolder.cc
 )
 
-target_link_libraries (casa_python3 casa_casa ${PYTHON3_Boost_PYTHON_LIBRARY_RELEASE} ${PYTHON3_LIBRARIES})
+
+target_link_libraries (casa_python3 casa_casa ${PYTHON3_Boost_LIBRARIES} ${PYTHON3_LIBRARIES})
 
 install (TARGETS casa_python3
 RUNTIME DESTINATION bin
