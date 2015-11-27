@@ -50,6 +50,8 @@ addons:
     - libboost-dev
     - libboost-python-dev
     - python-numpy
+    - python3-numpy
+
 
 before_script:
   - wget http://www.iausofa.org/2015_0209_F/sofa_f-20150209_a.tar.gz -O /tmp/sofa.tgz
@@ -65,6 +67,7 @@ before_script:
       -DUSE_OPENMP=OFF
       -DUSE_HDF5=ON
       -DBUILD_PYTHON=ON
+      -DBUILD_PYTHON3=ON
       -DDATA_DIR=$PWD
       -DSOFA_ROOT_DIR=$HOME
       -DCXX11=$CXX11
