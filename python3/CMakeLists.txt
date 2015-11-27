@@ -18,12 +18,18 @@ if (PYTHON3_FIND_PACKAGE_MESSAGE_DETAILS_PythonLibs)
 endif()
 
 # Detect the python properties
-set(Python_FIND_VERSION 3)
-set(PythonInterp_FIND_VERSION_MAJOR 3)
+set(Python_ADDITIONAL_VERSIONS 3.5 3.4)
+
 find_package(Python REQUIRED)
+
 if (PYTHONINTERP_FOUND)
-    # NOTE: the name of the python3 version of boost is probably Debian/Ubuntu specific
-    find_package(Boost REQUIRED COMPONENTS python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR})
+    if (APPLE)
+        find_package(Boost REQUIRED COMPONENTS python3)
+    else ()
+        # NOTE: the name of the python3 version of boost is probably Debian/Ubuntu specific
+        find_package(Boost REQUIRED COMPONENTS python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR})
+    endif (APPLE)
+
     find_package (NUMPY REQUIRED)
 
     # copy the variables to their final destination
